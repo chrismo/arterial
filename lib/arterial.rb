@@ -41,7 +41,7 @@ class Arterial
   end
 
   def add_node_pair(ar)
-    node = @graph.add_nodes("#{ar.class.to_s} #{ar.new_record? ? '[new]' : ar.id}\nobj_id: #{ar.object_id}", label: '')
+    node = @graph.add_nodes("#{ar.class.to_s} #{ar.new_record? ? '[new]' : ar.id}\nobj_id: #{ar.object_id}")
     ArNodePair.new(ar, node)
   end
 
@@ -51,6 +51,7 @@ class Arterial
     @pairs.each do |a_pair|
       return true if a_pair.ar.object_id == this_pair.ar.object_id
     end
+    false
   end
 
   def to_dot
