@@ -34,7 +34,7 @@ class Arterial
         [assoc.target].flatten.each do |target|
           target_pair = add_node_pair(target)
           @graph.add_edges(source_pair.node, target_pair.node, label: name)
-          stack.push target_pair.ar unless already_in_pairs(target_pair)
+          stack.push target_pair.ar unless already_in_pairs(target_pair) || stack.map(&:object_id).include?(target_pair.ar.object_id)
         end
       end
     end
@@ -49,6 +49,7 @@ class Arterial
   # potentially duplicate ARs in different instances
   def already_in_pairs(this_pair)
     @pairs.each do |a_pair|
+      # superfluous reference of object_id?
       return true if a_pair.ar.object_id == this_pair.ar.object_id
     end
     false
