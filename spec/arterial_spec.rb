@@ -57,4 +57,8 @@ describe Arterial do
     a = Arterial.new(author)
     a.graph.output(png: 'blog.png')
   end
+
+  it 'should render supplier' do
+    Supplier
+  end
 end
